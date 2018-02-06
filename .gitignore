@@ -106,3 +106,4 @@ sftp-config.json
 
 ### Webstorm ###
 .idea/
+/package-lock.json
