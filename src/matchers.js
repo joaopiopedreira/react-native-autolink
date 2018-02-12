@@ -43,7 +43,6 @@ const combinedRegex = (countryList = ['US']) => {
   return RegExp.any(...regexToInclude);
 };
 
-
 export default [
   // LatLng
   {
