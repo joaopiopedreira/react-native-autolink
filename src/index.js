@@ -104,13 +104,23 @@ export default class Autolink extends Component {
       }
       case 'phone': {
         const number = match.getNumber();
-
+        let numberToDial;
         switch (this.props.phone) {
           case 'sms':
           case 'text':
-            return [`sms:${number}`];
+            if (this.props.phoneHideNumberPrefix) {
+              numberToDial = [`sms:${this.props.phoneHideNumberPrefix.toString()} ${number}}`];
+            } else {
+              numberToDial = [`sms:${number}`];
+            }
+            return numberToDial;
           default:
-            return [`tel:${number}`];
+            if (this.props.phoneHideNumberPrefix) {
+              numberToDial = [`tel:${this.props.phoneHideNumberPrefix.toString()} ${number}}`];
+            } else {
+              numberToDial = [`tel:${number}`];
+            }
+            return numberToDial;
         }
       }
       case 'url': {
@@ -297,4 +307,5 @@ Autolink.propTypes = {
     }),
   ]),
   webFallback: PropTypes.bool,
+  phoneHideNumberPrefix: PropTypes.number,
 };
